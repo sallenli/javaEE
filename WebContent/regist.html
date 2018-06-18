@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>表单验证</title>
+<style type="text/css">
+#form1 input.error {
+	border: solid 1px red;
+}
+
+#form1 label.error {
+	margin-left: 10px;
+	color: red;
+}
+</style>
+<script type="text/javascript">
+	function change(obj) {
+		obj.src = "checkcodeServlet?" + new Date().getTime();
+	}
+</script>
+</head>
+<body>
+	<form id="form1" action="registServletUpdate" method="post">
+		<table align="center">
+			<tr>
+				<td>用户名:</td>
+				<td><input type="text" name="username" id="username" /></td>
+
+			</tr>
+			<tr>
+				<td>密码:</td>
+				<td><input type="password" name="password" id="password" /></td>
+
+			</tr>
+			<tr>
+				<td>确认密码:</td>
+				<td><input type="password" name="repassword" id="repassword"></td>
+
+			</tr>
+			<tr>
+				<td>年龄:</td>
+				<td><input type="text" name="age"></td>
+			</tr>
+			<tr>
+				<td>兴趣:</td>
+				<td>
+				    <input type="checkbox" name="hobby" value="游戏"
+					checked=checked>游戏 
+					<input type="checkbox" name="hobby"
+					value="音乐">音乐 
+					<input type="checkbox" name="hobby"
+					value="游泳">游泳 
+					<input type="checkbox" name="hobby"
+					value="乒乓">乒乓
+					</td>
+			</tr>
+			<tr>
+				<td>验证码:</td>
+				<td><input type="text" name="code" /></td>
+				<td><img alt="验证码图片" src="checkcodeServlet"
+					style="cursor: pointer;" onclick="change(this)" /></td>
+			</tr>
+			<tr>
+
+				<td><input type="submit" value="提交"></td>
+
+			</tr>
+		</table>
+
+	</form>
+</body>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.validate.js"></script>
+<script type="text/javascript">
+	$("#form1").validate({
+		//rules -- 用来定义规则
+		rules : {
+			username : {
+				required : true
+			},
+			password : {
+				required : true,
+				rangelength : [ 4, 8 ]
+			},
+			repassword : {
+				equalTo : '#password'
+			}
+		},
+		//messages 填写对应的消息
+		messages : {
+			username : {
+				required : '用户名不能为空'
+			},
+			password : {
+				required : '密码不能为空',
+				rangelength : '密码的长度为4~8'
+			},
+			repassword : {
+				equalTo : '密码要保持一致'
+			}
+		}
+	});
+</script>
+
+
+</html>

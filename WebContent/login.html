@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>欢迎来到个人博客网站,请登录</title>
+<script type="text/javascript" src="WebContent/bootstrap.min.js">
+	
+</script>
+<script type="text/javascript" src="WebContent/jquery.js"></script>
+<script >
+	function regist()
+	{
+		window.location.href="regist.html";
+		//obj.src="regist.html";
+	}
+	
+	function change(obj) {
+		obj.src = "checkcodeServlet?" + new Date().getTime();
+	}
+
+</script>
+</head>
+
+<body >
+
+	<form action="Login" method="post">
+
+		<table>
+			<tr>
+				<td>
+				用户名：</td>
+				<td><input type="text" name="username" /></td>
+			</tr>
+			<tr>
+			<td>
+			密码：
+			</td>
+			
+			<td>
+			<input type="password" name="userpassword" />
+			</td>
+			</tr>
+			<tr>
+				<td>验证码:</td>
+				<td><input type="text" name="code" /></td>
+				<td><img alt="验证码图片" src="checkcodeServlet"
+					style="cursor: pointer;" onclick="change(this)" /></td>
+			</tr>
+			<tr>
+			<td>
+			<input type="submit" value="提交" />
+			<input type="button" value="注册"  onclick="regist()"/>
+			</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
